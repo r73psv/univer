@@ -1,6 +1,5 @@
 package ru.pls;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
@@ -14,7 +13,7 @@ public class FileUtility {
             final String content = Files.readString(Path.of(pathToFile)); //читаем содержимое файла, находящегося по адресу "pathToFile" в константу content
 
             final String[] lines = content.split("\n"); //разбиваем содержимое на строки
-            ArrayList<Record> records=new ArrayList<>();
+            ArrayList<Record> records=new ArrayList<>(); //создаем список типа Record для хранения строк(Record - сщзданный класс)
             for (int i=1; i< lines.length; i++) {
                  String[] elements = lines[i].split(",");    //разбиваем строки по разделителю ","
 
