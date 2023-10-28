@@ -48,15 +48,11 @@ public class StepTracker {
 
             System.out.println();
             System.out.println("Количество шагов за месяц " + sum);
-            System.out.printf ("Пройдено километров за месяц %.2f", Converter.convertToDistance(sum));
-            System.out.println();
-            System.out.printf("Сожжено калорий за месяц %.2f", Converter.convertToCalories(sum));
-            System.out.println();
-            System.out.printf ("Максимальное количество шагов за день %d, что равно %.2f км", max, Converter.convertToDistance(max));
-            System.out.println();
-            System.out.printf("Cреднее количество шагов за день %d, что равно %.2f", (sum/mounthDate.size()),
+            System.out.printf ("Пройдено километров за месяц %.2f\n", Converter.convertToDistance(sum));
+            System.out.printf("Сожжено калорий за месяц %.2f\n", Converter.convertToCalories(sum));
+            System.out.printf ("Максимальное количество шагов за день %d, что равно %.2f км\n", max, Converter.convertToDistance(max));
+            System.out.printf("Cреднее количество шагов за день %d, что равно %.2f\n", (sum/mounthDate.size()),
                              Converter.convertToDistance(sum/mounthDate.size()));
-            System.out.println();
             System.out.println("Наибольшее количество дней подряд когда достигнута цель " + countMax);
             System.out.println("Цель "+purposeSteps);
         } else  System.out.println("В выбранном месяце не было активности");
