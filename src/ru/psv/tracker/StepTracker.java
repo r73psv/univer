@@ -11,8 +11,8 @@ public class StepTracker {
         monthToDate.put(i,new MonthDate());
     }
 }
-    public void setPurposeSteps(int purposeSteps) {
-        this.purposeSteps = purposeSteps;
+    public void setPurposeSteps(int purpSteps) {
+        purposeSteps = purpSteps;
     }
 
 
@@ -54,6 +54,7 @@ public class StepTracker {
             System.out.println("Cреднее количество шагов за день " + sum/mounthDate.size() +
                     " что равно " + Converter.convertToDistance(sum/mounthDate.size()));
             System.out.println("Наибольшее количество дней подряд когда достигнута цель " + countMax);
+            System.out.println("Цель "+purposeSteps);
         } else  System.out.println("В выбранном месяце не было активности");
 
     }
