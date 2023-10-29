@@ -8,24 +8,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtility {
-    public List<Record> parseToReport(String pathToFile) throws IOException {
+    public String[] parseFileToStringArray(String pathToFile) throws IOException {
         try {
             final String content = Files.readString(Path.of(pathToFile)); //читаем содержимое файла, находящегося по адресу "pathToFile" в константу content
-
             final String[] lines = content.split("\n"); //разбиваем содержимое на строки
-            ArrayList<Record> records=new ArrayList<>(); //создаем список типа Record для хранения строк(Record - сщзданный класс)
-            for (int i=1; i< lines.length; i++) {
-                 String[] elements = lines[i].split(",");    //разбиваем строки по разделителю ","
+            return lines;
 
-                //записываем полученные элементы в Record предварительно преобразовывая их из строки в необходимый формат
-                records.add(new Record(lines[0],Boolean.valueOf(lines[1]),Integer.valueOf(lines[2]), BigDecimal.valueOf(Double.valueOf(lines[3]))));
-               }
-            return records;
         } catch (IOException e) {
             System.out.println("Невозможно прочитать файл");
             throw new RuntimeException(e);
         }
 
+    }
+    public List<Record> parseStringMonthToWord (String array[]) {
+        ArrayList<Record> records=new ArrayList<>(); //создаем список типа Record для хранения строк(Record - сoзданный класс)
+        for (int i=1; i< array.length; i++) {
+            String[] elements = array[i].split(",");    //разбиваем строки по разделителю ","
+
+            //записываем полученные элементы в Record предварительно преобразовывая их из строки в необходимый формат
+            records.add(new Record(array[0],Boolean.valueOf(array[1]),Integer.valueOf(array[2]), Integer.valueOf(array[3])));// преоразование  BigDecimal если что - BigDecimal.valueOf(Double.valueOf(array[3])))
+        }
+        return records;
+    }
+    public List<RecordYear> parseStringYearToWord (String array[]) {
+        ArrayList<RecordYear> records=new ArrayList<>(); //создаем список типа Record для хранения строк(Record - сoзданный класс)
+        for (int i=1; i< array.length; i++) {
+            String[] elements = array[i].split(",");    //разбиваем строки по разделителю ","
+
+            //записываем полученные элементы в Record предварительно преобразовывая их из строки в необходимый формат
+            records.add(new RecordYear(Integer.valueOf(array[0]), BigDecimal.valueOf(Double.valueOf(array[1])), Boolean.valueOf(array[2])));
+        }
+        return records;
     }
 
 }

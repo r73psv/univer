@@ -31,7 +31,10 @@ public class StepTracker {
             int count=0;
             int countMax=0;
             for (int i = 0; i < mounthDate.size(); i++) {
-                System.out.print("День: " + (i + 1) + " " + mounthDate.getMonthData(i) + ", ");
+                   System.out.print("День: " + (i + 1) + " " + mounthDate.getMonthData(i) + ", ");
+                    if(i==9 ||i==19) {
+                        System.out.println();
+                    }
                 sum=sum+mounthDate.getMonthData(i);
                 if (mounthDate.getMonthData(i)> max){
                     max=mounthDate.getMonthData(i);
