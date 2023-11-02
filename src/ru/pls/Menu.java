@@ -25,33 +25,13 @@ public class Menu {
                     break;
 
                     case 2: {
-                        int numOfMonth = 0;
-                        boolean flag = true;
-                        while (flag) {
-                            System.out.println("Введите номер месяца - число от 1 до 12");
-                            numOfMonth = sc.nextInt();
-                            if (numOfMonth <= 0 || numOfMonth > 12) {
-                                System.out.println("Такого месяца не существует");
-
-                            } else {
-                                flag = false;
-                            }
+                        FileUtility.loadYearData();
                         }
-                    }
-                        break;
+
+                    break;
 
                         case 3: {
-                            boolean flag = true;
-                            int purposeSteps = 0;
-                            while (flag) {
-                                System.out.println("Введите количество шагов");
-                                purposeSteps = sc.nextInt();
-                                if (purposeSteps < 0) {
-                                    System.out.println("Количество шагов не может быть отрицательным");
-                                } else {
-                                    flag = false;
-                                }
-                            }
+
 
                         }
                         break;

@@ -13,7 +13,7 @@ public class FileUtility {
             String separator = File.separator;
             final String content = Files.readString(Path.of(pathToFile)); //читаем содержимое файла, находящегося по адресу "pathToFile" в константу content
             final String[] lines = content.split("\\r\\n"); //разбиваем содержимое на строки
-            if (("F:" + separator + "git" + separator + "services" + separator + "services" + separator + "src" + separator + "ru" + separator + "pls" + separator + "file" + separator + "m").equals(pathToFile.substring(0, 38))) {
+            if (("F:" + separator + "git" + separator + "services" + separator + "services" + separator + "src" + separator + "ru" + separator + "pls" + separator + "file" + separator + "m").equals(pathToFile.substring(0, 42))) {
                 return parseStringMonthToWord(lines);
             } else
                 return parseStringYearToWord(lines);
@@ -75,5 +75,16 @@ public class FileUtility {
         }
 
 
- }
+    }
+
+    public static void loadYearData() {
+        String fileName;
+        YearlyReport yearlyReport = new YearlyReport();
+        String separator = File.separator;
+        fileName = "F:" + separator + "git" + separator + "services" + separator + "services" + separator + "src" + separator + "ru" + separator + "pls" + separator + "file" + separator + "y2023.csv";
+        yearlyReport.addYearRecord(2023, parseFileToMonthToRecord(fileName));
+    }
+
+
 }
+

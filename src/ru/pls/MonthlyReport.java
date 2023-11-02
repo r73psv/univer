@@ -15,4 +15,8 @@ public class MonthlyReport {
     public void addMonthRecord(Integer month, ArrayList<? extends Record> monthRecordMonth) {
         data.put(month, monthRecordMonth);
     }
+
+    public void sumAmount() {
+
+    }
 }
