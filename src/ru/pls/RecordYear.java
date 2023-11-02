@@ -2,7 +2,7 @@ package ru.pls;
 
 import java.math.BigDecimal;
 
-public class RecordYear {
+public class RecordYear extends Record {
    Integer month;
    BigDecimal amount;
    Boolean isExpense;
