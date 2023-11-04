@@ -16,7 +16,25 @@ public class MonthlyReport {
         data.put(month, monthRecordMonth);
     }
 
-    public void sumAmount() {
+    public int sumAmountYearExpense() {
+        int sumYearExpense = 0;
+        for (int i = 0; i < data.size(); i++) {
+            ArrayList<? extends Record> newrep = data.get(i);
+            sumYearExpense = sumYearExpense + sumAmountMonthExpense(newrep);
+        }
+        return sumYearExpense;
+    }
 
+    public int sumAmountMonthExpense(ArrayList<? extends Record> newrep) {
+        int sumExp = 0;
+        int sumNotExp = 0;
+        for (Record rep : newrep) {
+            RecordMonth mr = (RecordMonth) rep;
+            if (mr.isExpense) {
+                sumExp = sumExp + mr.sumOfOne;
+            }
+        }
+        return sumExp;
     }
 }
+
