@@ -2,18 +2,19 @@ package ru.pls;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class FileUtility {
-    public static ArrayList<? extends Record> parseFileToMonthToRecord(String pathToFile) {
+    public static ArrayList<? extends Record> parseFileToRecord(String pathToFile) {
         try {
             String separator = File.separator;
             final String content = Files.readString(Path.of(pathToFile)); //читаем содержимое файла, находящегося по адресу "pathToFile" в константу content
             final String[] lines = content.split("\\r\\n"); //разбиваем содержимое на строки
-            if (("F:" + separator + "git" + separator + "services" + separator + "services" + separator + "src" + separator + "ru" + separator + "pls" + separator + "file" + separator + "m").equals(pathToFile.substring(0, 42))) {
+            if (("F:" + separator + "git" + separator + "services" + separator + "services" + separator +
+                    "src" + separator + "ru" + separator + "pls" + separator +
+                    "file" + separator + "m").equals(pathToFile.substring(0, 42))) {
                 return parseStringMonthToWord(lines);
             } else
                 return parseStringYearToWord(lines);
@@ -22,7 +23,6 @@ public class FileUtility {
             System.out.println("Невозможно прочитать файл");
             throw new RuntimeException(e);
         }
-
     }
 
     /*
@@ -57,23 +57,24 @@ public class FileUtility {
             String[] elements = array[i].split(";");  //разбиваем строки по разделителю ";"
 
             //записываем полученные элементы в RecordMonth предварительно преобразовывая их из строки в необходимый формат
-            records.add(new RecordYear(Integer.parseInt(elements[0]), BigDecimal.valueOf(Double.parseDouble(elements[1])), Boolean.valueOf(elements[2])));
+            records.add(new RecordYear(Integer.parseInt(elements[0]), Integer.valueOf(elements[1]), Boolean.valueOf(elements[2])));
         }
         return records;
     }
 
-    public static void loadMonthData() {
+    public static MonthlyReport loadMonthData() {
         String fileName;
         MonthlyReport monthlyReport = new MonthlyReport();
         String separator = File.separator;
         for (int i = 1; i <= 3; i++) {
             if (i < 10) {
                 fileName = "F:" + separator + "git" + separator + "services" + separator + "services" + separator + "src" + separator + "ru" + separator + "pls" + separator + "file" + separator + "m20230" + i + ".csv";
-            } else
+            } else {
                 fileName = "F:" + separator + "git" + separator + "services" + separator + "services" + separator + "src" + separator + "ru" + separator + "pls" + separator + "file" + separator + "m2023" + i + ".csv";
-            monthlyReport.addMonthRecord(i, parseFileToMonthToRecord(fileName));
+            }
+            monthlyReport.addMonthRecord(i, (ArrayList<RecordMonth>) parseFileToRecord(fileName));
         }
-
+        return monthlyReport;
 
     }
 
@@ -82,7 +83,7 @@ public class FileUtility {
         YearlyReport yearlyReport = new YearlyReport();
         String separator = File.separator;
         fileName = "F:" + separator + "git" + separator + "services" + separator + "services" + separator + "src" + separator + "ru" + separator + "pls" + separator + "file" + separator + "y2023.csv";
-        yearlyReport.addYearRecord(2023, parseFileToMonthToRecord(fileName));
+        yearlyReport.addYearRecord(2023, parseFileToRecord(fileName));
     }
 
 

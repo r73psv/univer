@@ -10,7 +10,6 @@ public class Menu {
 
         Scanner sc = new Scanner(System.in);
 
-
         while (true) {
             printMenu();
             int command = sc.nextInt();
@@ -31,11 +30,13 @@ public class Menu {
                     break;
 
                         case 3: {
-
-
+                            //YearlyReport.equalsAmount();
+                            MonthlyReport.equalsExpenses();
                         }
                         break;
                         case 4: {
+
+                            int yearExpense = MonthlyReport.sumAmountYearExpense();
                         }
                         break;
                         case 5: {

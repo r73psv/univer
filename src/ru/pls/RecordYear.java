@@ -1,15 +1,13 @@
 package ru.pls;
 
-import java.math.BigDecimal;
-
 public class RecordYear extends Record {
    Integer month;
-   BigDecimal amount;
-   Boolean isExpense;
+    Integer amount;
+    Boolean isExpense;
 
-   public RecordYear(Integer month, BigDecimal amount, Boolean isExpense) {
-      this.month = month;
-      this.amount = amount;
-      this.isExpense = isExpense;
-   }
+    public RecordYear(Integer month, Integer amount, Boolean isExpense) {
+        this.month = month;
+        this.amount = amount;
+        this.isExpense = isExpense;
+    }
 }
