@@ -44,7 +44,7 @@ public class MonthlyReport {
     //подсчет трат за месяц
     public static int sumAmountMonthExpense(ArrayList<? extends Record> newrep) {
         int sumExp = 0;
-       // System.out.println("Размер массива "+ newrep.size());
+        // System.out.println("Размер массива "+ newrep.size());
         for (int i = 0; i < newrep.size(); i++) {
             RecordMonth mr = (RecordMonth) newrep.get(i);
             //  System.out.println("Количество "+mr.quantity);
@@ -86,5 +86,38 @@ public class MonthlyReport {
     public void addMonthRecord(Integer month, ArrayList<RecordMonth> monthRecordMonth) {
         data.put(month, monthRecordMonth);
     }
+
+    public static void monthlyReportInfo() {
+
+        for (int i = 1; i <= data.size(); i++) {
+            int maxExpense = 0;
+            int maxNotExpense = 0;
+            String nameExpense = null;
+            String nameNotExpense = null;
+            System.out.println("Месяц " + i);
+            for (int j = 0; j < data.get(i).size(); j++) {
+                RecordMonth mr = (RecordMonth) data.get(i).get(j);
+                if (mr.isExpense) {
+                    int thisExpense = mr.sumOfOne * mr.quantity;
+                    if (maxExpense < thisExpense) {
+                        maxExpense = thisExpense;
+                        nameExpense = mr.itemName;
+                    }
+                }
+                if (!mr.isExpense) {
+                    int thisNotExpense = mr.sumOfOne * mr.quantity;
+                    if (maxNotExpense < thisNotExpense) {
+                        maxNotExpense = thisNotExpense;
+                        nameNotExpense = mr.itemName;
+                    }
+                }
+
+            }
+            System.out.println(nameExpense + " Расход " + maxExpense);
+            System.out.println(nameNotExpense + " Доход " + maxNotExpense);
+        }
+    }
 }
+
+
 

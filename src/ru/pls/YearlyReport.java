@@ -1,7 +1,10 @@
 package ru.pls;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static ru.pls.Menu.mainMenu;
 
 public class YearlyReport {
     static HashMap<Integer, ArrayList<? extends Record>> data = new HashMap<>();
@@ -35,15 +38,29 @@ public class YearlyReport {
                     }
                 }
             }
-        } else if (data.isEmpty() && MonthlyReport.data.isEmpty()) {
-            System.out.println("Не получены данные годового и  месячных отчетов");
-
-        } else if (data.isEmpty()) {
-            System.out.println("не получены данные годового отчета");
-
         } else {
-            System.out.println("Не получены данные месячных отчетов");
-
+            if (data.isEmpty() && MonthlyReport.data.isEmpty()) {
+                System.out.println("Не получены данные годового и  месячных отчетов");
+                try {
+                    mainMenu();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (data.isEmpty()) {
+                System.out.println("не получены данные годового отчета");
+                try {
+                    mainMenu();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                System.out.println("Не получены данные месячных отчетов");
+                try {
+                    mainMenu();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 

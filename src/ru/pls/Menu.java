@@ -35,8 +35,8 @@ public class Menu {
                         }
                         break;
                         case 4: {
-
-                            int yearExpense = MonthlyReport.sumAmountYearExpense();
+                            MonthlyReport.monthlyReportInfo();
+                            //int yearExpense = MonthlyReport.sumAmountYearExpense();
                         }
                         break;
                         case 5: {
