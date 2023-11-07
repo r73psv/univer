@@ -44,15 +44,16 @@ public class MonthlyReport {
     //подсчет трат за месяц
     public static int sumAmountMonthExpense(ArrayList<? extends Record> newrep) {
         int sumExp = 0;
-        System.out.println(newrep.size());
+       // System.out.println("Размер массива "+ newrep.size());
         for (int i = 0; i < newrep.size(); i++) {
             RecordMonth mr = (RecordMonth) newrep.get(i);
-            System.out.println(mr.quantity);
+            //  System.out.println("Количество "+mr.quantity);
             if (mr.isExpense) {
-                sumExp = sumExp + mr.quantity;
+                //      System.out.println("expense");
+                sumExp = sumExp + mr.quantity * mr.sumOfOne;
             }
         }
-        System.out.println(sumExp + "SE");
+        //   System.out.println(sumExp + " Сумма расходов");
         return sumExp;
     }
 
@@ -61,10 +62,15 @@ public class MonthlyReport {
         int sumNotExp = 0;
         for (int i = 0; i < newrep.size(); i++) {
             RecordMonth mr = (RecordMonth) newrep.get(i);
+
+            //  System.out.println("Количество "+mr.quantity);
+
             if (!mr.isExpense) {
-                sumNotExp = sumNotExp + mr.quantity;
+                // System.out.println("notExpense");
+                sumNotExp = sumNotExp + mr.quantity * mr.sumOfOne;
             }
         }
+        //  System.out.println(sumNotExp + " Сумма доходов");
         return sumNotExp;
     }
 

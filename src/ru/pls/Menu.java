@@ -30,7 +30,7 @@ public class Menu {
                     break;
 
                         case 3: {
-                            //YearlyReport.equalsAmount();
+                            YearlyReport.equalsAmount();
                             MonthlyReport.equalsExpenses();
                         }
                         break;

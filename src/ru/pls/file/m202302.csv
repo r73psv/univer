@@ -1,3 +1,4 @@
+item_name;is_Expense; quantity;sum_of_one
 name;TRUE;5000;2
 sname;FALSE;6000;1
 uname;TRUE;40000;5

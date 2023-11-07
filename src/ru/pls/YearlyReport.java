@@ -16,32 +16,38 @@ public class YearlyReport {
 
     //
     public static void equalsAmount() {
-        ArrayList<? extends Record> ry = YearlyReport.data.get(2023);
-        for (int i = 0; i < ry.size(); i++) {
-            RecordYear yearRep = (RecordYear) ry.get(i);
-            System.out.println(yearRep.month + " " + yearRep.amount + " " + yearRep.isExpense);
+        if (!data.isEmpty() && !MonthlyReport.data.isEmpty()) {
+            ArrayList<? extends Record> ry = YearlyReport.data.get(2023);
+            for (int i = 0; i < ry.size(); i++) {
+                RecordYear yearRep = (RecordYear) ry.get(i);
+                int month = yearRep.month;
 
-            int month = yearRep.month;
-            ArrayList<? extends Record> newrep = MonthlyReport.data.get(month);
-            RecordMonth rm = (RecordMonth) newrep.get(month);
-
-            int mr = MonthlyReport.sumAmountMonthNotExpense(newrep);
-            int mr2 = MonthlyReport.sumAmountMonthExpense(newrep);
-            System.out.println(mr);
-            System.out.println(mr2);
-
-            if (!yearRep.isExpense) {
-                if (yearRep.amount != MonthlyReport.sumAmountMonthNotExpense(newrep)) {
-                    System.out.println("Доходы " + yearRep.amount + "  " + MonthlyReport.sumAmountMonthNotExpense(newrep));
-                    System.out.println("Суммы доходов по годовому и месячному отчетам за " + yearRep.month + " месяц не совпадают");
-                }
-            } else {
-                if (yearRep.amount != MonthlyReport.sumAmountMonthExpense(MonthlyReport.data.get(month))) {
-                    System.out.println("Расходы " + yearRep.amount + "  " + MonthlyReport.sumAmountMonthNotExpense(newrep));
-                    System.out.println("Суммы расходов по годовому и месячному отчетам за " + yearRep.month + " месяц не совпадают");
+                ArrayList<? extends Record> newrep = MonthlyReport.data.get(month);
+                if (!yearRep.isExpense) {
+                    if (yearRep.amount != MonthlyReport.sumAmountMonthNotExpense(newrep)) {
+                        System.out.println("Доходы за " + month + " из годового " + yearRep.amount + " из месячного  " + MonthlyReport.sumAmountMonthNotExpense(newrep));
+                        System.out.println("Суммы доходов по годовому и месячному отчетам за " + month + " месяц не совпадают");
+                    }
+                } else {
+                    if (yearRep.amount != MonthlyReport.sumAmountMonthExpense(MonthlyReport.data.get(month))) {
+                        System.out.println("Расходы за " + month + " из годового " + yearRep.amount + " из месячного " + MonthlyReport.sumAmountMonthNotExpense(newrep));
+                        System.out.println("Суммы расходов по годовому и месячному отчетам за " + month + " месяц не совпадают");
+                    }
                 }
             }
+        } else if (data.isEmpty() && MonthlyReport.data.isEmpty()) {
+            System.out.println("Не получены данные годового и  месячных отчетов");
+
+        } else if (data.isEmpty()) {
+            System.out.println("не получены данные годового отчета");
+
+        } else {
+            System.out.println("Не получены данные месячных отчетов");
+
         }
     }
+
 }
+
+
 

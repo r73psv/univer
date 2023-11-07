@@ -1,5 +1,7 @@
 month;amount;isExpense
-01;234;true
+01;202000;true
 01;450;false
 02;45000;true
 02;4511;false
+03;60000;false
+03;810000;true
