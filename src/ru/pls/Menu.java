@@ -40,6 +40,7 @@ public class Menu {
                         }
                         break;
                         case 5: {
+                            YearlyReport.yearlyReportInfo();
                         }
                         break;
 

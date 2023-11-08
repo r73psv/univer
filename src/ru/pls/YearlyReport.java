@@ -64,6 +64,31 @@ public class YearlyReport {
         }
     }
 
+    public static void yearlyReportInfo() {
+        for (int key : data.keySet()) {
+            int yearExpense = 0;
+            int yearNotExpense = 0;
+            System.out.println("Год " + key);
+            ArrayList<? extends Record> ry = YearlyReport.data.get(key);
+            int month = 0;
+            for (int i = 0; i < ry.size(); i++) {
+                int profit = 0;
+                RecordYear yearRep = (RecordYear) ry.get(i);
+
+                if (yearRep.isExpense) yearExpense = yearRep.amount;
+                if ((!yearRep.isExpense)) yearNotExpense = yearRep.amount;
+
+                if (month <= yearRep.month) {
+                    month = yearRep.month;
+                    profit = yearNotExpense - yearExpense;
+                }
+
+                System.out.println("Месяц " + month);
+                System.out.println("Приыль " + profit);
+            }
+
+        }
+    }
 }
 
 
