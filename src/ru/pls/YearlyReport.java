@@ -74,17 +74,23 @@ public class YearlyReport {
             for (int i = 0; i < ry.size(); i++) {
                 int profit = 0;
                 RecordYear yearRep = (RecordYear) ry.get(i);
-
-                if (yearRep.isExpense) yearExpense = yearRep.amount;
-                if ((!yearRep.isExpense)) yearNotExpense = yearRep.amount;
-
-                if (month <= yearRep.month) {
-                    month = yearRep.month;
-                    profit = yearNotExpense - yearExpense;
-                }
-
+                RecordYear yearRepNew = (RecordYear) ry.get(i+1);
+            if  (yearRep.month==yearRepNew.month){
+                if (yearRep.isExpense) 
+                    yearExpense = yearExpense + yearRep.amount;
+                else 
+                    yearNotExpense =  yearNotExpense+yearRep.amount;
+                if (yearRepNew.isExpense) 
+                    yearExpense = yearExpense + yearRepNew.amount;
+                else 
+                    yearNotExpense =  yearNotExpense+yearRepNew.amount;
+                profit = yearNotExpense - yearExpense;
                 System.out.println("Месяц " + month);
                 System.out.println("Приыль " + profit);
+            }
+              
+
+                
             }
 
         }
