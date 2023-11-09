@@ -71,31 +71,35 @@ public class YearlyReport {
             System.out.println("Год " + key);
             ArrayList<? extends Record> ry = YearlyReport.data.get(key);
             int month = 0;
-            for (int i = 0; i < ry.size(); i++) {
+            for (int i = 0; i < ry.size() - 1; i++) {
                 int profit = 0;
+                int yearExpenseMonth = 0;
+                int yearNotExpenseMonth = 0;
                 RecordYear yearRep = (RecordYear) ry.get(i);
-                RecordYear yearRepNew = (RecordYear) ry.get(i+1);
-            if  (yearRep.month==yearRepNew.month){
-                if (yearRep.isExpense) 
-                    yearExpense = yearExpense + yearRep.amount;
-                else 
-                    yearNotExpense =  yearNotExpense+yearRep.amount;
-                if (yearRepNew.isExpense) 
-                    yearExpense = yearExpense + yearRepNew.amount;
-                else 
-                    yearNotExpense =  yearNotExpense+yearRepNew.amount;
-                profit = yearNotExpense - yearExpense;
-                System.out.println("Месяц " + month);
-                System.out.println("Приыль " + profit);
-            }
-              
+                RecordYear yearRepNew = (RecordYear) ry.get(i + 1);
+                if (yearRep.month == yearRepNew.month) {
+                    if (yearRep.isExpense)
+                        yearExpenseMonth = yearExpenseMonth + yearRep.amount;
+                    else
+                        yearNotExpenseMonth = yearNotExpenseMonth + yearRep.amount;
+                    if (yearRepNew.isExpense)
+                        yearExpenseMonth = yearExpenseMonth + yearRepNew.amount;
+                    else
+                        yearNotExpenseMonth = yearNotExpenseMonth + yearRepNew.amount;
+                    profit = yearNotExpenseMonth - yearExpenseMonth;
+                    month = yearRep.month;
+                    System.out.println("Месяц " + month);
+                    System.out.println("Приыль " + profit);
+                    yearExpense = yearExpense + yearExpenseMonth;
+                    yearNotExpense = yearNotExpense + yearNotExpenseMonth;
 
-                
-            }
+                }
 
+            }
+            System.out.println("Доход в среднем за месяц " + yearNotExpense / month);
+            System.out.println("Расход в среднем за месяц " + yearExpense / month);
         }
     }
 }
-
 
 
