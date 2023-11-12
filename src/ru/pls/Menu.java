@@ -7,7 +7,6 @@ public class Menu {
 
     public static void mainMenu() throws IOException {
 
-
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -25,33 +24,33 @@ public class Menu {
 
                     case 2: {
                         FileUtility.loadYearData();
-                        }
+                    }
 
                     break;
 
-                        case 3: {
-                            YearlyReport.equalsAmount();
-                            MonthlyReport.equalsExpenses();
-                        }
-                        break;
-                        case 4: {
-                            MonthlyReport.monthlyReportInfo();
-                            //int yearExpense = MonthlyReport.sumAmountYearExpense();
-                        }
-                        break;
-                        case 5: {
-                            YearlyReport.yearlyReportInfo();
-                        }
-                        break;
-
-                        default:
-                            System.out.println("Извините, такой команды пока нет.");
+                    case 3: {
+                        YearlyReport.equalsAmount();
+                        MonthlyReport.equalsExpenses();
                     }
+                    break;
+                    case 4: {
+                        MonthlyReport.monthlyReportInfo();
+                        //int yearExpense = MonthlyReport.sumAmountYearExpense();
+                    }
+                    break;
+                    case 5: {
+                        YearlyReport.yearlyReportInfo();
+                    }
+                    break;
+
+                    default:
+                        System.out.println("Извините, такой команды пока нет.");
                 }
             }
         }
+    }
 
-    public static void printMenu () {
+    public static void printMenu() {
         System.out.println("Что вы хотите сделать? ");
         System.out.println("1 - Считать все месячные отчеты");
         System.out.println("2 - Считать годовой отчет");
@@ -60,6 +59,5 @@ public class Menu {
         System.out.println("5 - Вывести информацию о годовом отчете");
         System.out.println("0 - Выход");
     }
-
-
 }
+
